@@ -8,12 +8,13 @@ services:
     volumes:
       - ./caddy/Caddyfile:/etc/Caddyfile
       - caddy_data:/root/.caddy
+    environment:
+      - AUTH_USER=monsec
+      - AUTH_PASS=monsec_live
   obs:
     build: ./obs
     volumes:
       - ./config:/config
-    environment:
-      - VNC_PASSWORD=monsec_live
   remote:
     build:
       context: ./remote

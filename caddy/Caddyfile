@@ -1,20 +1,31 @@
+(auth) {
+  basicauth {$AUTH_USER} {$AUTH_PASS} {
+    "MonSec Cloud Stream"
+    /
+  }
+}
+
 :5555 {
+  import auth
   redir /obs/
 }
 
 :5555/obs/ {
+  import auth
   proxy / obs:5800 {
     websocket
   }
 }
 
 :5555/obs-websocket/ {
+  import auth
   proxy / obs:4444 {
     websocket
   }
 }
 
 :5555/remote/ {
+  import auth
   redir 302 {
     if {path} is /remote/
     "/remote/index.html#!auto&host={hostonly}&port={server_port}/obs-websocket/"
