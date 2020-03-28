@@ -7,7 +7,7 @@
 
 :5555 {
   import auth
-  redir /obs/
+  root /srv
 }
 
 :5555/obs/ {
