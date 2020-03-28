@@ -1,0 +1,3 @@
+[submodule "remote/obs-tablet-remote"]
+	path = remote/obs-tablet-remote
+	url = https://github.com/t2t2/obs-tablet-remote.git

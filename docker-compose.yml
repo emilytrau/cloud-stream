@@ -2,13 +2,18 @@ version: '3'
 
 services:
   obs:
-    image: angustrau/obs
+    build: ./obs
     ports:
       - 5800:5800
+      - 4444:4444
     volumes:
       - ./config:/config
     environment:
       - VNC_PASSWORD=monsec_live
+  remote:
+    build: ./remote
+    ports:
+      - 5000:5000
   rtmp:
     image: tiangolo/nginx-rtmp
     ports:
