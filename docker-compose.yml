@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  obs:
+    image: angustrau/obs
+    ports:
+      - 5800:5800
+    volumes:
+      - ./config:/config
+  rtmp:
+    image: tiangolo/nginx-rtmp
+    ports:
+      - 1935:1935
