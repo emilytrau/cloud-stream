@@ -1,0 +1,25 @@
+:5555 {
+  redir /obs/
+}
+
+:5555/obs/ {
+  proxy / obs:5800 {
+    websocket
+  }
+}
+
+:5555/obs-websocket/ {
+  proxy / obs:4444 {
+    websocket
+  }
+}
+
+:5555/remote/ {
+  redir 302 {
+    if {path} is /remote/
+    "/remote/index.html#!auto&host={hostonly}&port={server_port}/obs-websocket/"
+  }
+  proxy / remote:5000 {
+    websocket
+  }
+}
