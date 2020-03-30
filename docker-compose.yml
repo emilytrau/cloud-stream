@@ -10,7 +10,9 @@ services:
       - ./caddy/Caddyfile:/etc/Caddyfile
       - ./caddy/index.html:/srv/index.html
       - caddy_data:/root/.caddy
-    env_file: .env
+    environment:
+      - AUTH_USER=${AUTH_USER}
+      - AUTH_PASS=${AUTH_PASS}
 
   obs:
     restart: unless-stopped
@@ -31,10 +33,16 @@ services:
     volumes:
       - ./rtmp/nginx.conf:/etc/nginx/nginx.conf
 
+  duckdns:
+    restart: unless-stopped
+    image: linuxserver/duckdns
+    environment:
+      - SUBDOMAINS=${DUCKDNS_SUBDOMAIN}
+      - TOKEN=${DUCKDNS_TOKEN}
   netdata:
     restart: unless-stopped
     image: netdata/netdata
-    hostname: ${CS_DOMAIN}
+    hostname: ${DOMAIN}
     cap_add:
       - SYS_PTRACE
     security_opt:
