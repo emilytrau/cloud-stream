@@ -1,0 +1,33 @@
+worker_processes auto;
+rtmp_auto_push on;
+events {}
+rtmp {
+    server {
+        listen 1935;
+        listen [::]:1935 ipv6only=on;    
+
+        application live {
+            live on;
+            notify_method get;
+            on_publish http://localhost/auth;
+            on_play http://localhost/auth;
+            wait_video on;
+            record off;
+        }
+    }
+}
+
+http {
+    server {
+        listen 80;
+        location /auth {
+            if ($arg_user != '${AUTH_USER}') {
+                return 403;
+            }
+            if ($arg_pass != '${AUTH_PASS}') {
+                return 403;
+            }
+            return 200;
+        }
+    }
+}
