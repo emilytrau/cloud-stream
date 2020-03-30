@@ -2,6 +2,7 @@ version: '3'
 
 services:
   web:
+    restart: unless-stopped
     image: abiosoft/caddy:no-stats
     ports:
       - 5555:5555
@@ -12,15 +13,18 @@ services:
     env_file: .env
 
   obs:
+    restart: unless-stopped
     build: ./obs
     volumes:
       - ./config:/config
   remote:
+    restart: unless-stopped
     build:
       context: ./remote
       args:
         - homepage=/remote
   rtmp:
+    restart: unless-stopped
     image: tiangolo/nginx-rtmp
     ports:
       - 1935:1935
@@ -28,6 +32,7 @@ services:
       - ./rtmp/nginx.conf:/etc/nginx/nginx.conf
 
   netdata:
+    restart: unless-stopped
     image: netdata/netdata
     hostname: ${CS_DOMAIN}
     cap_add:
@@ -44,6 +49,7 @@ services:
     depends_on:
       - docker-proxy
   docker-proxy:
+    restart: unless-stopped
     image: tecnativa/docker-socket-proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
