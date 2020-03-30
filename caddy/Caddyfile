@@ -1,4 +1,8 @@
-:5555 {
+http://* https://* {
+  tls {
+    max_certs 10
+  }
+
   basicauth {$AUTH_USER} {$AUTH_PASS} {
     "MonSec Cloud Stream"
     /
