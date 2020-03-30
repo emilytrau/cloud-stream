@@ -23,5 +23,9 @@
     websocket
   }
 
+  proxy /netdata/ netdata:19999 {
+    without /netdata
+  }
+
   root /srv
 }
