@@ -20,6 +20,7 @@ services:
     build: ./obs
     volumes:
       - ./config/obs:/config/xdg/config/obs-studio
+      - ./config/user:/config/user
   remote:
     restart: unless-stopped
     build:
