@@ -45,7 +45,7 @@ services:
   netdata:
     restart: unless-stopped
     image: netdata/netdata
-    hostname: ${DOMAIN}
+    hostname: monsec-cloud-stream
     cap_add:
       - SYS_PTRACE
     security_opt:
