@@ -80,6 +80,13 @@ Set up OBS Studio with the following Stream settings. Stream key is the value de
 
 ![](resources/obs_presenter_settings.png)
 
+### Previewing
+
+VLC is able to preview the raw feed by going to `Media -> Open Network Stream` and using the following network URL.
+```
+rtmp://<DOMAIN>:1935/live/<STREAM_KEY>?user=<USERNAME>&pass=<PASSWORD>
+```
+
 ## Tearing down
 
 ### 1. Stop the server
