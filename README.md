@@ -36,10 +36,11 @@ Copy the example config: `cp .env.example .env`.
 
 | Variable | Description |
 |----------|-------------|
+| DOMAIN | The full domain name that points to this server/the DuckDNS subdomain. |
 | DUCKDNS_SUBDOMAIN | DuckDNS subdomain created for this app. `xxx.duckdns.org` |
 | DUCKDNS_TOKEN | [DuckDNS token](https://www.duckdns.org/domains). If using the default subdomain, log in with the MonSec Google account. |
-| AUTH_USER | Used to authenticate the web interface and RTMP |
-| AUTH_PASS | Used to authenticate the web interface and RTMP |
+| AUTH_USER | Used to authenticate the web interface and RTMP. |
+| AUTH_PASS | Used to authenticate the web interface and RTMP. |
 
 ### 4. Start up the server
 ```
