@@ -9,8 +9,8 @@ services:
       - 443:443
     volumes:
       - ./caddy/Caddyfile:/etc/Caddyfile
-      - ./caddy/index.html:/srv/index.html
-      - caddy_data:/root/.caddy
+      - ./caddy/public:/srv
+      - ./config/caddy:/root/.caddy
     environment:
       - AUTH_USER=${AUTH_USER}
       - AUTH_PASS=${AUTH_PASS}
@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
     build: ./obs
     volumes:
-      - ./config:/config
+      - ./config/obs:/config/xdg/config/obs-studio
   remote:
     restart: unless-stopped
     build:
@@ -66,6 +66,3 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - CONTAINERS=1
-
-volumes:
-  caddy_data:
