@@ -12,6 +12,7 @@ services:
       - ./caddy/public:/srv
       - ./config/caddy:/root/.caddy
     environment:
+      - DOMAIN=${DOMAIN}
       - AUTH_USER=${AUTH_USER}
       - AUTH_PASS=${AUTH_PASS}
 

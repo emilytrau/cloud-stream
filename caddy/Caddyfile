@@ -1,7 +1,17 @@
-http://* https://* {
+https://* http://localhost http://127.0.0.1 {
   tls {
-    max_certs 10
+    ask http://localhost/tls
   }
+  rewrite /tls {
+    if {hostonly} is {$DOMAIN}
+    to /tls/ok
+  }
+  rewrite /tls {
+    if {hostonly} not {$DOMAIN}
+    to /tls/fail
+  }
+  status 200 /tls/ok
+  status 404 /tls/fail
 
   basicauth {$AUTH_USER} {$AUTH_PASS} {
     "MonSec Cloud Stream"
@@ -12,7 +22,6 @@ http://* https://* {
     without /obs
     websocket
   }
-
   proxy /obs-websocket/ obs:4444 {
     without /obs-websocket
     websocket
