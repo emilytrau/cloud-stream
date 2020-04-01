@@ -1,4 +1,5 @@
 {
   "public": "/app/dist",
-  "cleanUrls": false
+  "cleanUrls": false,
+  "directoryListing": false
 }
