@@ -3,18 +3,20 @@ version: '3'
 services:
   web:
     restart: unless-stopped
-    image: abiosoft/caddy:no-stats
+    build: ./caddy
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./caddy/Caddyfile:/etc/Caddyfile
+      - ./caddy/Caddyfile.template:/app/Caddyfile.template
       - ./caddy/public:/srv
       - ./config/caddy:/root/.caddy
     environment:
+      - PRODUCTION=${PRODUCTION}
       - DOMAIN=${DOMAIN}
       - AUTH_USER=${AUTH_USER}
       - AUTH_PASS=${AUTH_PASS}
+      - ACME_AGREE=true
 
   obs:
     restart: unless-stopped
