@@ -17,7 +17,7 @@ Live streaming host server for multiple remote presenters. Designed to quickly s
 Create an account at [DuckDNS](https://www.duckdns.org) and create a subdomain to use for the streaming server.
 
 ### 2. Set up DNS
-Go to your DNS provider and create a CNAME record to your DuckDNS subdomain (`xxx.duckdns.org`). You will be able to use this to access the web interface and as the RTMP destination.
+Go to your DNS provider and create a CNAME record to your DuckDNS subdomain (`xxx.duckdns.org`). Be sure to use a short TTL. You will be able to use this to access the web interface and as the RTMP destination.
 
 ## Setting up the server
 
